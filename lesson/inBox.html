@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Box</title>
+
+  
+    <script src="../Libraries/angular.js"></script>
+    <script src="Libraries/jquery-2.1.1.min.js"></script>
+    <script src="Libraries/bootstrap.js"></script>
+    <script src="Libraries/angular_resource.js"></script>
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+    <script src="Libraries/jquery-2.1.1.min.js"></script>
+    <link href="Style/myStyle.css" rel="stylesheet" />
+    <script src="MyJs/myBoxApp.js"></script>
+
+   
+</head>
+<body >
+        
+    <div class="row" id="gallery" ng-app="boxApp">                     
+       <div id="content" class="col-sm-6 col-md-4" ng-controller="modelCtrl">
+            <div class="thumbnail" ng-repeat="item in items">
+                <img ng-src=" {{ item.templateUrl }}" width="150" height="150"> 
+                    <p> Name: {{item.name }} </p>              
+                    <p> Price: {{item.price}}</p>
+                 
+                <a class="btn btn-default" role="button" ng-click="clickHandler(item); setAddress('billingZip', billingZip); ">Buy now!</a>
+                        <div class="caption">
+                            <h3>Some descriptions...</h3>
+                        </div>
+                <div id="itemCount" ng-model="shippingZip"> Items in box: {{order.length}}</div>
+             </div>
+           
+           
+           <button type="button" id="basket" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="copyAddress();">
+               Shopping bag
+               <p></p>
+           </button>
+
+           <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+               <div class="modal-dialog modal-lg" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <h4 class="modal-title" id="myModalLabel">My order</h4>
+                       </div>
+                       <div class="modal-body">
+                           <div ng-model="shippingZip">
+                               <div ng-repeat="value in shippingZip">
+                                   <p> {{value.name}} </p>
+                                   <img ng-src=" {{ value.templateUrl }}">
+                                   <p>Count: {{value.count}}</p>
+                                   <button ng-click="plusOne(value)">+</button>
+                                   <button ng-click="minusOne(value)">-</button>
+                                   <p>Price: {{value.price}}</p>
+                                   
+                                   
+                               </div>
+                           </div>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           <button type="button" class="btn btn-primary">Save changes</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+
+      </div>   
+        
+    </div>
+
+
+   
+   
+ 
+</body>
+</html>
+
